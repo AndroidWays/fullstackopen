@@ -1,0 +1,64 @@
+.delete-btn {
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: rgb(248, 11, 11);
+}
+
+.add-btn {
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-add:hover {
+  background-color: rgb(45, 161, 126);
+    cursor: pointer;
+
+}
+
+.success {
+  color: green;
+  background: lightgrey;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.error {
+  color: red;
+  background: lightgrey;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+
+/*
+.notification {
+  border: 5px solid green;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  color: green;
+  font-size: 30px;
+}
+
+.notification.success {
+  background-color: burlywood;
+}
+
+.notification.error {
+  background-color: red;
+}
+*/

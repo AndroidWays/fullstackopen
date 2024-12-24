@@ -1,0 +1,39 @@
+/* src/index.css */
+
+html, body {
+  height: 100%;
+  margin: 0;
+
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+main {
+  flex: 1;
+}
+
+footer {
+  background: #f1f1f1;
+  padding: 10px;
+  margin-top: 150px;
+  text-align: left;
+}
+
+.notification {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}

@@ -1,0 +1,152 @@
+/* General Body Styles */
+body {
+  background-color: #949a95; /* Light blue background */
+  font-family: Arial, sans-serif; /* Font family for the entire page */
+  color: #333; /* Default text color */
+  margin: 0;
+  padding: 0;
+}
+
+/* Align Right */
+.align-right {
+  display: flex !important;
+  justify-content: flex-end !important; /* Updated to 'flex-end' for right alignment */
+}
+
+/* Align Center */
+.align-center {
+  display: flex;
+  justify-content: center; /* Center alignment */
+  align-items: center; /* Center vertically */
+  text-align: center; /* Center text */
+}
+
+/* Align Left */
+.align-left {
+  display: flex;
+  justify-content: flex-start; /* Left alignment */
+}
+
+/* Flex Container with Space Between */
+.space-between {
+  display: flex;
+  justify-content: space-between; /* Space between items */
+}
+
+/* Flex Container with Space Around */
+.space-around {
+  display: flex;
+  justify-content: space-around; /* Space around items */
+}
+
+/* Flex Container with Space Evenly */
+.space-evenly {
+  display: flex;
+  justify-content: space-evenly; /* Space evenly distributed */
+}
+
+/* Container Styles */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff; /* White background for containers */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Button Styles */
+.button {
+  background-color: #007bff; /* Primary blue color */
+  color: #fff; /* White text color */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Secondary Button */
+.button-secondary {
+  background-color: #6c757d; /* Secondary gray color */
+  color: #fff;
+}
+
+.button-secondary:hover {
+  background-color: #5a6268; /* Darker gray on hover */
+}
+
+/* Card Styles */
+.card {
+  background-color: #fff; /* White background */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.card-header {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.card-content {
+  font-size: 16px;
+  color: #555; /* Slightly lighter text color */
+}
+
+/* Typography Styles */
+h1, h2, h3, h4, h5, h6 {
+  color: #333; /* Dark text color for headings */
+}
+
+p {
+  line-height: 1.6; /* Line height for readability */
+  margin: 0 0 10px 0; /* Margin for paragraphs */
+}
+
+/* Link Styles */
+a {
+  color: #007bff; /* Primary blue for links */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+/* Form Styles */
+input, textarea, select {
+  border: 1px solid #ddd; /* Light border */
+  border-radius: 4px; /* Rounded corners */
+  padding: 10px;
+  font-size: 16px;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: #007bff; /* Blue border on focus */
+  outline: none; /* Remove default outline */
+}
+
+/* Utility Classes */
+.mt-2 {
+  margin-top: 16px;
+}
+
+.mb-2 {
+  margin-bottom: 16px;
+}
+
+.pt-2 {
+  padding-top: 16px;
+}
+
+.pb-2 {
+  padding-bottom: 16px;
+}
+
