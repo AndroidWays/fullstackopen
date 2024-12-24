@@ -1,35 +1,33 @@
-import { useState } from "react";
+import { useQuery } from "@apollo/client";
 import PropTypes from "prop-types";
+import { GET_BOOKS } from "../graphql/queries";
 
 const Books = (props) => {
-    const [books] = useState([
-        {
-            title: "Harry Potter and the Philosopher's Stone",
-            author: "J.K. Rowling",
-            published: 1997,
-        },
-        { title: "A Game of Thrones", author: "George R.R. Martin", published: 1996 },
-        { title: "The Hobbit", author: "J.R.R. Tolkien", published: 1937 },
-    ]);
+    const { loading, error, data } = useQuery(GET_BOOKS);
 
     if (!props.show) {
         return null;
     }
 
+    if (loading) return <p>Loading books...</p>;
+    if (error) return <p>Error: {error.message}</p>;
+
     return (
         <div>
             <h2>Books</h2>
             <table>
-                <tbody>
+                <thead>
                     <tr>
                         <th>Title</th>
                         <th>Author</th>
                         <th>Published</th>
                     </tr>
-                    {books.map((book) => (
-                        <tr key={book.title}>
+                </thead>
+                <tbody>
+                    {data.allBooks.map((book) => (
+                        <tr key={book._id || book.title}>
                             <td>{book.title}</td>
-                            <td>{book.author}</td>
+                            <td>{book.author.name}</td>
                             <td>{book.published}</td>
                         </tr>
                     ))}
