@@ -1,4 +1,5 @@
 // models/author.js
+/*
 let authors = [
     { id: 1, name: "Manasseh Azure Awuni", born: 1985 },
     { id: 2, name: "Manasseh Azure Awuni", born: 1985 },
@@ -12,3 +13,17 @@ let authors = [
 ];
 
 module.exports = authors;
+*/
+const mongoose = require("mongoose");
+
+const authorSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true, // Name must be present
+    },
+    born: Number,
+});
+
+const Author = mongoose.model("Author", authorSchema);
+
+module.exports = Author;
