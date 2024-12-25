@@ -1,12 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
-import "../App.css"; // Ensure the correct import of App.css
+import "../App.css";
 
-const LoginForm = ({ show, onLogin }) => {
+const LoginForm = ({ show, onLogin, onClose }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+
+    const formRef = useRef(null);
+
+    // Close login form if clicked outside
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (
+                formRef.current &&
+                !formRef.current.contains(event.target) &&
+                !username &&
+                !password
+            ) {
+                onClose();
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, [username, password, onClose]);
 
     if (!show) return null;
 
@@ -28,8 +47,8 @@ const LoginForm = ({ show, onLogin }) => {
 
     return (
         <div className="login-form-container">
-            <div className="login-form">
-                <h2>Login</h2>
+            <div className="login-form" ref={formRef}>
+                {/* <h2>Login</h2> */}
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label htmlFor="username">Username</label>
@@ -65,6 +84,7 @@ const LoginForm = ({ show, onLogin }) => {
 LoginForm.propTypes = {
     show: PropTypes.bool.isRequired,
     onLogin: PropTypes.func.isRequired,
+    onClose: PropTypes.func.isRequired,
 };
 
 export default LoginForm;

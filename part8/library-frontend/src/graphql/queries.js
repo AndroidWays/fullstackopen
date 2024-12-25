@@ -20,9 +20,9 @@ const BOOK_FIELDS = gql`
     }
 `;
 
-export const GET_BOOKS = gql`
-    query GetBooks {
-        allBooks {
+export const GET_BOOKS_BY_GENRE = gql`
+    query GetBooksByGenre($genre: String) {
+        allBooks(genre: $genre) {
             ...BookFields
         }
     }
