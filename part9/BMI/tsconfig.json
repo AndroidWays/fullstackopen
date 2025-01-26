@@ -1,12 +1,15 @@
 {
     "compilerOptions": {
         "noImplicitAny": true,
-        "module": "CommonJS",
+        "noImplicitReturns": true,
+        "strictNullChecks": true,
+        "strictPropertyInitialization": true,
+        "strictBindCallApply": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitThis": true,
+        "alwaysStrict": true,
         "esModuleInterop": true,
-        "target": "ES6",
-        "outDir": "./dist",
-        "rootDir": "./",
-        "strict": true
-    },
-    "include": ["src", "tests"]
+        "declaration": true
+    }
 }
