@@ -26,8 +26,15 @@ const parseArguments = (args: string[]): BmiValues => {
 };
 
 export const calculateBmi = (height: number, weight: number): string => {
-    if (height <= 0) throw new Error("Height must be a positive number!");
-    if (weight <= 0) throw new Error("Weight must be a positive number!");
+    // Validate input types
+    if (isNotNumber(height) || isNotNumber(weight)) {
+        throw new Error("Provided values must be numbers!");
+    }
+
+    // Validate positive values
+    if (height <= 0 || weight <= 0) {
+        throw new Error("Height and weight must be positive numbers!");
+    }
 
     const bmi = weight / (height / 100) ** 2;
 
