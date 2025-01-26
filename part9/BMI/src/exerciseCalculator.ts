@@ -10,32 +10,23 @@ interface ExerciseResult {
     average: number;
 }
 
-const parseArguments = (args: string[]): { target: number; dailyHours: number[] } => {
-    if (args.length < 4)
-        throw new Error(
-            "Not enough arguments. Usage: npm run calculateExercises <target> <dailyHours...>"
-        );
-
-    const target = Number(args[2]);
-    const dailyHours = args.slice(3).map(Number);
-
-    if (isNotNumber(target) || dailyHours.some(isNotNumber)) {
+export const calculateExercises = (dailyHours: number[], target: number): ExerciseResult => {
+    // Validate input types
+    if (dailyHours.some((hours) => isNotNumber(hours)) || isNotNumber(target)) {
         throw new Error("Provided values must be numbers!");
     }
 
-    if (target < 0 || dailyHours.some((hours) => hours < 0)) {
-        throw new Error("Target and daily hours must be non-negative numbers!");
+    // Validate non-negative values
+    if (dailyHours.some((hours) => hours < 0)) {
+        throw new Error("Daily hours must be non-negative numbers!");
     }
-
-    return { target, dailyHours };
-};
-
-export const calculateExercises = (dailyHours: number[], target: number): ExerciseResult => {
     if (target < 0) {
         throw new Error("Target must be a non-negative number!");
     }
-    if (dailyHours.some((hours) => hours < 0)) {
-        throw new Error("Daily hours must be non-negative numbers!");
+
+    // Validate non-empty array
+    if (dailyHours.length === 0) {
+        throw new Error("Daily hours array must not be empty!");
     }
 
     const periodLength = dailyHours.length;
@@ -66,17 +57,3 @@ export const calculateExercises = (dailyHours: number[], target: number): Exerci
         average,
     };
 };
-
-// Only run if executed directly
-if (require.main === module) {
-    try {
-        const { target, dailyHours } = parseArguments(process.argv);
-        console.log(calculateExercises(dailyHours, target));
-    } catch (error: unknown) {
-        let errorMessage = "Something went wrong.";
-        if (error instanceof Error) {
-            errorMessage += " Error: " + error.message;
-        }
-        console.log(errorMessage);
-    }
-}
