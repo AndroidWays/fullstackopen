@@ -1,4 +1,8 @@
-import { Diagnosis } from "../types";
+interface Diagnosis {
+    code: string;
+    name: string;
+    latin?: string; // Optional field
+}
 
 const diagnoses: Diagnosis[] = [
     {
@@ -10,7 +14,15 @@ const diagnoses: Diagnosis[] = [
         code: "M51.2",
         name: "Other specified intervertebral disc displacement",
     },
-    // Add more diagnoses as needed
+    {
+        code: "S03.5",
+        name: "Sprain and strain of joints and ligaments of head",
+    },
+    {
+        code: "J10.1",
+        name: "Flu with respiratory manifestations",
+        latin: "Influenza cum manifestationibus respiratoriis",
+    },
 ];
 
 export default diagnoses;

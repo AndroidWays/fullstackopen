@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import patients from "./data/patients";
+import diagnoses from "./data/diagnoses";
 
 const app = express();
 app.use(
@@ -21,6 +22,23 @@ app.get("/api/ping", (_req, res) => {
 
 app.get("/api/patients", (_req, res) => {
     res.json(patients); // Return all patient data
+});
+
+// Endpoint to fetch all diagnoses
+app.get("/api/diagnoses", (_req, res) => {
+    res.json(diagnoses);
+});
+
+// Endpoint to fetch all patients (without ssn)
+app.get("/api/patients", (_req, res) => {
+    const patientsWithoutSsn = patients.map(({ id, name, dateOfBirth, gender, occupation }) => ({
+        id,
+        name,
+        dateOfBirth,
+        gender,
+        occupation,
+    }));
+    res.json(patientsWithoutSsn);
 });
 
 app.listen(PORT, () => {
