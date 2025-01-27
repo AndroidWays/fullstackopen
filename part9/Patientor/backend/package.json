@@ -1,0 +1,37 @@
+{
+    "name": "backend",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "start": "node dist/index.js",
+        "dev": "ts-node-dev src/index.ts",
+        "tsc": "tsc",
+        "lint": "eslint src/",
+        "build": "npm run tsc"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "dependencies": {
+        "@emotion/react": "^11.14.0",
+        "@emotion/styled": "^11.14.0",
+        "@mui/material": "^6.4.1",
+        "axios": "^1.7.9",
+        "cors": "^2.8.5",
+        "express": "^4.21.2"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.19.0",
+        "@types/axios": "^0.9.36",
+        "@types/cors": "^2.8.17",
+        "@types/express": "^5.0.0",
+        "@types/node": "^22.10.10",
+        "eslint": "^9.19.0",
+        "globals": "^15.14.0",
+        "ts-node": "^10.9.2",
+        "ts-node-dev": "^2.0.0",
+        "typescript": "^5.7.3",
+        "typescript-eslint": "^8.21.0"
+    }
+}
