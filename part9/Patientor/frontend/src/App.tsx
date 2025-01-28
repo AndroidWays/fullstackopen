@@ -9,24 +9,26 @@ import { Patient } from "./types";
 import patientService from "./services/patients";
 import PatientListPage from "./components/PatientListPage";
 
+// Mute console warnings in development mode
+if (process.env.NODE_ENV === "development") {
+    console.warn = () => {}; // This will mute the warnings in development mode
+}
+
 const App = () => {
     const [patients, setPatients] = useState<Patient[]>([]);
 
     useEffect(() => {
-        axios
-            .get<void>(`${apiBaseUrl}/ping`)
-            .then(() => console.log("Backend is reachable"))
-            .catch((error) => console.error("Error pinging backend:", error));
-
-        const fetchPatientList = async () => {
+        const fetchData = async () => {
             try {
+                await axios.get<void>(`${apiBaseUrl}/ping`);
                 const patients = await patientService.getAll();
                 setPatients(patients);
             } catch (error) {
-                console.error("Error fetching patient list:", error);
+                console.error("Failed to fetch data:", error);
             }
         };
-        void fetchPatientList();
+
+        void fetchData();
     }, []);
 
     return (
