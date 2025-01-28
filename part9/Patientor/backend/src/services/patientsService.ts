@@ -21,6 +21,7 @@ const patients: Patient[] = [
     },
 ];
 
+// Get non-sensitive patient data
 const getNonSensitivePatients = (): Omit<Patient, "ssn">[] => {
     return patients.map(({ id, name, occupation, gender, dateOfBirth, entries }) => ({
         id,
@@ -32,4 +33,12 @@ const getNonSensitivePatients = (): Omit<Patient, "ssn">[] => {
     }));
 };
 
-export default { getNonSensitivePatients };
+// Add a new patient (without ssn)
+const addPatient = (newPatient: Omit<Patient, "id">): Patient => {
+    const id = (patients.length + 1).toString(); // Generate a simple id based on array length
+    const patientWithId = { id, ...newPatient, ssn: "N/A" }; // Set ssn as "N/A" for new patients
+    patients.push(patientWithId);
+    return patientWithId;
+};
+
+export default { getNonSensitivePatients, addPatient };
