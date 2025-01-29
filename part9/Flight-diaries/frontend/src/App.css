@@ -1,0 +1,215 @@
+/* App.css */
+
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Arial", sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+h1 {
+    color: #29b8ec;
+    font-size: 3em;
+    font-weight: 900;
+}
+h2 {
+    color: #07c97b;
+    font-size: 1.5em;
+    font-weight: 900;
+}
+
+/* Form Styling */
+form {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 50px;
+    width: 500px; /* Fixed width for the form */
+    align-self: flex-start; /* Align to the left */
+}
+
+/* Form Input Fields */
+input[type="date"],
+input[type="text"] {
+    padding: 8px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 12px;
+    transition: border-color 0.3s ease;
+    width: 100%;
+}
+
+/* Focus effect */
+input[type="date"]:focus,
+input[type="text"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Form Labels */
+label {
+    font-weight: bold;
+    font-size: 0.95em;
+    margin-bottom: 5px;
+}
+
+/* Radio Button Group */
+span {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Spacing between radio buttons */
+label {
+    margin-right: 10px;
+}
+
+/* Radio Button Styling */
+input[type="radio"] {
+    margin-right: 5px;
+    margin-top: 8px;
+}
+
+/* Submit Button Styles */
+button {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 20px;
+}
+
+/* Hover Effect on Submit Button */
+button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05); /* Slightly increase button size */
+}
+
+/* Cursor effect on hover */
+button:hover {
+    cursor: pointer; /* Custom cursor */
+}
+
+/* Container for the diary entries */
+.diary-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Individual diary entry */
+.diary-entry {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    border-left: 5px solid #007bff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.diary-entry:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Entry header (date and weather) */
+.entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.entry-date {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.entry-weather {
+    font-size: 0.9em;
+    color: #666;
+    padding: 5px 10px;
+    border-radius: 15px;
+    background-color: #e3f2fd;
+}
+
+/* Visibility */
+.entry-visibility {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.entry-visibility::before {
+    content: "👀 ";
+}
+
+/* Comment */
+.entry-comment {
+    font-size: 1em;
+    color: #444;
+    line-height: 1.5;
+}
+
+/* Weather-specific colors */
+.entry-weather.rainy {
+    background-color: #bbdefb;
+    color: #1976d2;
+}
+
+.entry-weather.sunny {
+    background-color: #fff3e0;
+    color: #f57c00;
+}
+
+.entry-weather.windy {
+    background-color: #e0f7fa;
+    color: #0097a7;
+}
+
+.entry-weather.cloudy {
+    background-color: #f5f5f5;
+    color: #757575;
+}
+
+.entry-weather.stormy {
+    background-color: #ffcdd2;
+    color: #c62828;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .diary-container {
+        padding: 10px;
+    }
+
+    .entry-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .entry-date {
+        margin-bottom: 5px;
+    }
+}
