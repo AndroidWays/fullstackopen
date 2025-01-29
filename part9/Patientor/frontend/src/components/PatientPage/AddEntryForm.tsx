@@ -114,7 +114,10 @@ const AddEntryForm = ({ onSubmit, onCancel, entryType, diagnoses }: Props) => {
                     fullWidth
                     value={date}
                     onChange={({ target }) => setDate(target.value)}
-                    InputLabelProps={{ shrink: true }}
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    required
                 />
                 <TextField
                     sx={{ my: 1 }}
@@ -123,8 +126,8 @@ const AddEntryForm = ({ onSubmit, onCancel, entryType, diagnoses }: Props) => {
                     fullWidth
                     value={specialist}
                     onChange={({ target }) => setSpecialist(target.value)}
+                    required
                 />
-
                 {entryType === EntryType.HealthCheck && (
                     <TextField
                         sx={{ my: 1 }}
@@ -134,6 +137,7 @@ const AddEntryForm = ({ onSubmit, onCancel, entryType, diagnoses }: Props) => {
                         fullWidth
                         value={healthCheckRating}
                         onChange={({ target }) => setHealthCheckRating(parseInt(target.value))}
+                        required
                     >
                         {healthCheckRatingOptions.map((option) => (
                             <MenuItem key={option.value} value={option.value}>
@@ -142,16 +146,16 @@ const AddEntryForm = ({ onSubmit, onCancel, entryType, diagnoses }: Props) => {
                         ))}
                     </TextField>
                 )}
-
                 {entryType === EntryType.OccupationalHealthcare && (
                     <>
                         <TextField
                             sx={{ my: 1 }}
-                            label="Employer Name"
+                            label="Employer"
                             variant="standard"
                             fullWidth
                             value={employerName}
                             onChange={({ target }) => setEmployerName(target.value)}
+                            required
                         />
                         <TextField
                             sx={{ my: 1 }}
@@ -161,7 +165,9 @@ const AddEntryForm = ({ onSubmit, onCancel, entryType, diagnoses }: Props) => {
                             fullWidth
                             value={sickLeaveStartDate}
                             onChange={({ target }) => setSickLeaveStartDate(target.value)}
-                            InputLabelProps={{ shrink: true }}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
                         />
                         <TextField
                             sx={{ my: 1 }}
@@ -171,11 +177,12 @@ const AddEntryForm = ({ onSubmit, onCancel, entryType, diagnoses }: Props) => {
                             fullWidth
                             value={sickLeaveEndDate}
                             onChange={({ target }) => setSickLeaveEndDate(target.value)}
-                            InputLabelProps={{ shrink: true }}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
                         />
                     </>
                 )}
-
                 {entryType === EntryType.Hospital && (
                     <>
                         <TextField
@@ -186,7 +193,9 @@ const AddEntryForm = ({ onSubmit, onCancel, entryType, diagnoses }: Props) => {
                             fullWidth
                             value={dischargeDate}
                             onChange={({ target }) => setDischargeDate(target.value)}
-                            InputLabelProps={{ shrink: true }}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
                         />
                         <TextField
                             sx={{ my: 1 }}
@@ -195,10 +204,10 @@ const AddEntryForm = ({ onSubmit, onCancel, entryType, diagnoses }: Props) => {
                             fullWidth
                             value={dischargeCriteria}
                             onChange={({ target }) => setDischargeCriteria(target.value)}
+                            required
                         />
                     </>
                 )}
-
                 <FormControl sx={{ my: 1 }} variant="standard" fullWidth>
                     <InputLabel>Diagnosis codes</InputLabel>
                     <Select
@@ -219,12 +228,17 @@ const AddEntryForm = ({ onSubmit, onCancel, entryType, diagnoses }: Props) => {
                         ))}
                     </Select>
                 </FormControl>
-
-                <Grid container justifyContent="space-between" sx={{ pb: 4 }}>
-                    <Button color="warning" variant="contained" onClick={onCancel}>
+                <Grid sx={{ pb: 4 }}>
+                    <Button
+                        color="warning"
+                        variant="contained"
+                        type="button"
+                        onClick={onCancel}
+                        sx={{ float: "left" }}
+                    >
                         Cancel
                     </Button>
-                    <Button type="submit" variant="contained">
+                    <Button type="submit" variant="contained" sx={{ float: "right" }}>
                         Add
                     </Button>
                 </Grid>
