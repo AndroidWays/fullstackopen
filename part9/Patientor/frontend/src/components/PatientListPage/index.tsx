@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
     Box,
     Table,
@@ -9,11 +10,13 @@ import {
     TableRow,
     TableBody,
 } from "@mui/material";
-import { AxiosError } from "axios";
+import axios from "axios";
 
 import { PatientFormValues, Patient } from "../../types";
 import AddPatientModal from "../AddPatientModal";
+
 import HealthRatingBar from "../HealthRatingBar";
+
 import patientService from "../../services/patients";
 
 interface Props {
@@ -38,8 +41,8 @@ const PatientListPage = ({ patients, setPatients }: Props) => {
             setPatients(patients.concat(patient));
             setModalOpen(false);
         } catch (e: unknown) {
-            if (e instanceof AxiosError) {
-                if (e.response?.data && typeof e.response.data === "string") {
+            if (axios.isAxiosError(e)) {
+                if (e?.response?.data && typeof e?.response?.data === "string") {
                     const message = e.response.data.replace("Something went wrong. Error: ", "");
                     console.error(message);
                     setError(message);
@@ -70,9 +73,11 @@ const PatientListPage = ({ patients, setPatients }: Props) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {patients.map((patient: Patient) => (
+                    {Object.values(patients).map((patient: Patient) => (
                         <TableRow key={patient.id}>
-                            <TableCell>{patient.name}</TableCell>
+                            <TableCell>
+                                <Link to={`/patients/${patient.id}`}>{patient.name}</Link>
+                            </TableCell>
                             <TableCell>{patient.gender}</TableCell>
                             <TableCell>{patient.occupation}</TableCell>
                             <TableCell>

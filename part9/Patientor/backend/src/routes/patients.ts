@@ -1,27 +1,53 @@
 import express from "express";
-import patientsService from "../services/patientsService";
-import { NewPatient } from "../utils/patientSchema"; // Import the NewPatient type
-import validateNewPatient from "../utils/validatePatient"; // Import the validation middleware
+import patientService from "../services/patientService";
+import { toEntry, toNewPatient } from "../utils";
 
 const router = express.Router();
 
-// GET endpoint to retrieve non-sensitive patients
 router.get("/", (_req, res) => {
-    res.send(patientsService.getNonSensitivePatients());
+    const patientData = patientService.getNonSensitivePatientData();
+    res.json(patientData);
 });
 
-// POST endpoint to add a new patient with validation
-router.post("/", validateNewPatient, (req, res) => {
+router.get("/:id", (req, res) => {
+    const patient = patientService.getPatient(req.params.id);
+    if (patient) {
+        res.json(patient);
+    } else {
+        res.status(404).send({ Error: "patient not found" });
+    }
+});
+
+router.post("/", (req, res) => {
     try {
-        const newPatient: NewPatient = req.body; // The body is validated by the middleware
-        const addedPatient = patientsService.addPatient({
-            ...newPatient,
-            occupation: newPatient.occupation || "",
-            entries: [],
-        });
-        res.status(201).json(addedPatient);
-    } catch {
-        res.status(500).json({ error: "Internal server error" });
+        const newPatient = toNewPatient(req.body);
+        const returnedPatient = patientService.addPatient(newPatient);
+        res.json(returnedPatient);
+    } catch (e) {
+        if (e instanceof Error) {
+            res.status(400).send({ Error: `${e.message}` });
+        } else {
+            res.status(400).send({ Error: "unknown error" });
+        }
+    }
+});
+
+router.post("/:id/entries", (req, res) => {
+    try {
+        const id = req.params.id;
+        const newEntry = toEntry(req.body);
+        const patient = patientService.addPatientEntry(id, newEntry);
+        if (patient) {
+            res.json(patient);
+        } else {
+            res.status(404).send({ Error: "patient not found" });
+        }
+    } catch (e) {
+        if (e instanceof Error) {
+            res.status(400).send({ Error: `${e.message}` });
+        } else {
+            res.status(400).send({ Error: "unknown error" });
+        }
     }
 });
 

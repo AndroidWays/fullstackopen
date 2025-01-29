@@ -1,30 +1,35 @@
 import axios from "axios";
-import { Patient, PatientFormValues } from "../types";
+import { EntryFormValues, Patient, PatientFormValues } from "../types";
+
 import { apiBaseUrl } from "../constants";
 
-// Fetch all patients
-const getAll = async (): Promise<Patient[]> => {
-    try {
-        const { data } = await axios.get<Patient[]>(`${apiBaseUrl}/patients`);
-        return data;
-    } catch (error) {
-        console.error("Failed to fetch patients:", error);
-        throw error; // Re-throw the error for the caller to handle
-    }
+const getAll = async () => {
+    const { data } = await axios.get<Patient[]>(`${apiBaseUrl}/patients`);
+
+    return data;
 };
 
-// Create a new patient
-const create = async (object: PatientFormValues): Promise<Patient> => {
-    try {
-        const { data } = await axios.post<Patient>(`${apiBaseUrl}/patients`, object);
-        return data;
-    } catch (error) {
-        console.error("Failed to create a patient:", error);
-        throw error; // Re-throw the error for the caller to handle
-    }
+const getById = async (id: string | undefined) => {
+    const { data } = await axios.get<Patient>(`${apiBaseUrl}/patients/${id}`);
+
+    return data;
+};
+
+const create = async (object: PatientFormValues) => {
+    const { data } = await axios.post<Patient>(`${apiBaseUrl}/patients`, object);
+
+    return data;
+};
+
+const addEntry = async (id: string | undefined, object: EntryFormValues) => {
+    const { data } = await axios.post<Patient>(`${apiBaseUrl}/patients/${id}/entries`, object);
+
+    return data;
 };
 
 export default {
     getAll,
+    getById,
     create,
+    addEntry,
 };
